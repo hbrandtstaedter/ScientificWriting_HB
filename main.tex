@@ -1,0 +1,205 @@
+%%Template file, originally intended for an injection simulator school project at ETH Zurich. The file is based on IEEE transactions style
+%Heike Vallery, January 2010, Zurich. Last update April 2021, Delft.
+%Remark: Some packages may be outdated.
+%Dez2022: Inhalt ins Deutsche übertragen und Anpassungen gemacht 
+%
+%  "%" or the comment environment allow you to write comments that are not visible in the generated document. Read the comments already provided in the individual sections here; they contain more instructions and more examples (now not visible in the pdf). 
+
+
+
+
+%-------------------------------------------------------------------------
+%FORMATTING COMMANDS (skip if you are a beginner and go to title section):
+%-------------------------------------------------------------------------
+
+\documentclass[a4paper, 11pt]{IEEEtran}  
+\bibliographystyle{IEEEtran}      
+
+
+%some formatting changes to move header and footer position manually to the right spot:
+\usepackage{fancyhdr}
+\renewcommand{\headrulewidth}{0pt}%potential line between header and body
+\addtolength{\headheight}{1.2 cm}%more space for header
+\addtolength{\headsep}{-.3 cm}%pull body up
+\addtolength{\footskip}{-.5 cm}%pull footer up
+%see the doc1ument https://tobi.oetiker.ch/lshort/lshort.pdf, page 115 for definition of main formatting variables
+
+\usepackage{psfrag}%needed to replace text in figures with latex text. Note that this package does not work with pdfLaTeX, so make sure the compiler is set to "LaTeX".
+\usepackage{amsmath,amssymb,amsfonts}%for equations
+\usepackage{siunitx} %to use the correct spacing between number and unit. Replaces the older package "units"
+  
+                    
+%some more useful packages:                     
+\usepackage{dsfont,latexsym,cite, comment, graphicx,color}
+\usepackage[hyperindex,breaklinks]{hyperref}
+\usepackage{url}
+\usepackage[hyphenbreaks]{breakurl}
+\usepackage[T1]{fontenc}
+
+%if you want to put several images into one figure:
+\usepackage{subfigure}
+\newcommand{\goodgap}{%for subfigure package
+\hspace{\subfigtopskip}%
+\hspace{\subfigbottomskip}}
+
+%some commands to simplify math typing:
+\newcommand{\V}[1]{\boldsymbol{#1}}%use this command for vectors
+\newcommand{\M}[1]{\mathbf{#1}}%use this command for matrices
+\DeclareMathOperator\sgn{sgn}%make sure that sign is interpreted as a function, not as a variable
+\newcommand{\ud}{\mathrm{d}} 							% roman d for derivatives
+\hyphenation{Re-ge-lungs-tech-nik}%Sometimes, default hyphenation is incorrect. Then, you have to specifiy it here. To find the right hyphenation, look at www.merriam-webster.com.
+
+%Here, you may include other packages or provide new commands:
+%Sprachpakete deutsch
+\usepackage[ngerman]{babel}	%Neue Rechtschreibung
+
+%\usepackage[backend=biber]{biblatex}
+
+%%% --- The following two lines are what needs to be added --- %%%
+
+%------------------------------------------------------------------------------
+%Adjust title, authors, and author affiliations in the following:
+%------------------------------------------------------------------------------
+\title{\LARGE \bf Wie schreibt man eine wissenschaftliche Arbeit: Richtlinien und Vorlage}
+%%For the title, try to capture your original contribution in a single sentence (which may be elliptic). Do not use the word ``novel''.
+
+
+%Authors: All those who contributed substantially and in a scientific manner
+\author
+{
+	Heide~Brandtstädter% <-this % stops a space
+	%\thanks
+	%{All authors are with the institute ... 
+	%	{\tt\small email address}
+%	}%
+}
+
+
+
+\begin{document}
+
+\fancyhf{} %clean header and footer
+\fancyhead[L]{\sf Mini-Paper, Modul Regelungstechnik, Studiengang Elektrotechnik, HTW~Berlin, SS~2023\\ H. Brandtstädter, Berlin, Germany, compiled \today
+\\Ich danke Heike Vallery (ETH Zürcih, TU Delft, RWHT Aachen) für die bereitstellung des TEmplates und der Freigane zur Weiterführung und Nutzung.} %header left
+\fancyfoot[C]{\thepage} %footer centered
+\maketitle
+\thispagestyle{fancy}%to include the header on the first page
+\pagestyle{plain}%no header on the other pages
+
+
+\input{hinweise}
+
+
+%---------------------------------------------------------------
+%ABSTRACT:
+%---------------------------------------------------------------
+
+\begin{abstract}
+Kurze Zusammenfassung, etwa ein Satz pro Abschnitt. 
+\end{abstract}
+
+%Nutzen Sie diesen Befehl, um Ihre Struktur zu überprüfen:
+%\tableofcontents
+
+%----------------------------------------------------------------%INTRODUCTION:
+%-------------------------------------------------------------
+
+
+\section{Einleitung}
+
+\begin{itemize}
+\item Was ist der Kontext / die Motivation für deine Arbeit?
+\item Was ist der Stand der Technik? Führen relevante Literatur an.
+\item Was fehlt in der Literatur? 
+\item Wie lautet die Forschungsfrage?
+\item Was ist dein neuer Beitrag?
+\end{itemize}
+
+
+%----------------------------------------------------------------%METHODE:
+%------------------------------------------------------------------------------
+\section{Methoden}
+
+Der Abschnitt Methoden ermmöglicht es anderen, deine Ergebnisse zu reproduzieren, ohne den Abschnitt Ergebnisse zu lesen. 
+Hier beantwortest du also Fragen wie:
+
+\begin{itemize}
+
+\item Wie entwirfst du dein Gerät/ deine Regelung? % Letzteres könnte z. B. in einem Unterabschnitt {Control Design} untergebracht werden.
+
+\item Wie entwirfst du Experimente/ Simulationen? 
+%Experimentprotokoll
+
+\item Wie sammelst und analysierst du Daten? % Z.B. \Unterabschnitt{Datenerfassung}, \Unterabschnitt{Datenanalyse}
+\end{itemize}
+
+Wähle beschreibende Namen für neue Methoden (anstelle von Wörtern wie ``neue Variante~2''), um die Zitierung und künftige Verbesserungen zu vereinfachen.
+
+
+
+%---------------------------------------------------------------
+%RESULTS:
+%--------------------------------------------------------------
+
+ \section{Ergebnisse}
+ Machen quantitative Angaben und veranschauliche diese mit Diagrammen. 
+  
+ Gebe im Abschnitt Ergebnisse keine zusätzlichen Informationen zu deinen Methoden an (z. B. die Methode zur Auswahl der Parameter oder das Versuchsprotokoll). 
+ 
+ Gebe nur die reinen Fakten an; interpretiere deine Ergebnisse noch nicht. Das heißt, keine Sätze wie: ``Die verbesserte Leistung zeigt, dass die Regelung effektiv ist...'' oder ``Ein wahrscheinlicher Grund für diese Beobachtung ist...''. 
+
+%Beispiel für eine Matlab-Darstellung (zum Ansehen auskommentieren):
+\begin{comment}
+Beispiel: Die drei Bedingungen weisen eine signifikant unterschiedliche Kraft auf... (Abb.~\ref{fig:boxplot}).
+%Diese Abbildung zeigt eine Matlab-Darstellung, exportiert nach eps
+\begin{figure}[hb]
+\psfrag{intt}[t][c]{ $F$/\si{N}}
+\psfrag{ZIm}[t][b]{\sf A}
+\psfrag{Elast}[t][b]{\sf B}
+\psfrag{Com}[t][b]{\sf C}
+\psfrag{5}[r][r]{\sf 5}
+\psfrag{10}[r][r]{ \sf 10}
+\psfrag{15}[r][r]{\sf 15}
+\psfrag{20}[r][r]{\sf 20}
+\centering
+\includegraphics[width=0.3\textwidth]{figures/boxplot.eps}
+\caption[Boxplot]{Force $F$ für die Bedingungen $A$, $B$, und $C$.}
+\label{fig:boxplot}
+\end{figure}
+%
+\end{comment} 
+ 
+
+
+
+%---------------------------------------------------------------
+%DISKUSSION:
+%----------------------------------------------------------------
+
+ \section{Diskussion}
+ 
+ Interpretiere deine Ergebnisse. Ist die Leistung akzeptabel? Gehe auf die Ausgangsfragen zurück und vergleiche mit anderen in der Literatur beschriebenen Methoden. Wie erklärst du unerwartete Ergebnisse? Welche Unzulänglichkeiten oder Einschränkungen weisen deine Methoden und Ergebnisse auf? Wo gibt es Raum für Verbesserungen? Könnte eine Kombination mit Methoden aus der Literatur die Arbeit weiter verbessern? Nenne Pläne, Bedürfnisse und Empfehlungen für die zukünftige Forschung. Dies kann auch in einem separaten Unterabschnitt ``Zukünftige Arbeiten'' erfolgen.
+
+%----------------------------------------------------------------
+%ZUSAMMENFASSUNG:
+%----------------------------------------------------------------
+
+\section{Fazit}
+Dies ist keine Zusammenfassung. Hier steht, was das Paper bringt.
+
+
+%----------------------------------------------------------------%ggf. DANKSAGUNGEN:
+%----------------------------------------------------------------
+
+\section*{Danksagungen}
+Danken Sie allen, die mit kleineren Ratschlägen oder auf nicht-wissenschaftliche Weise (z. B. technische Unterstützung) beigetragen haben.
+%----------------------------------------------------------------
+
+%----------------------------------------------------------------%LITERATUR
+%----------------------------------------------------------------
+
+%Latex generates the list automatically from your citations
+\bibliography{SampleBibliography}
+
+
+\end{document}
